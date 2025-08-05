@@ -14,6 +14,9 @@ body {
 
 body.dark-mode {
     --dark-bg: #111112;
+    background-image: url(https://i.imgur.com/aX96CVH.jpeg);
+    background-position: top center;
+    background-repeat: repeat-x;
 }
 
 .container {
@@ -160,7 +163,7 @@ body.dark-mode input:not([type=checkbox],[type=radio]) {
 
 .holder-newsletter {
     background: none;
-    border-top: 1px solid #ffffff30;
+    border-bottom: 1px solid #ffffff30;
     border-radius: 0;
 }
 
@@ -217,7 +220,7 @@ body.dark-mode input:not([type=checkbox],[type=radio]) {
 }
 
 .top-ratings .holder-review .review-content {
-    background: #1C1D20;
+    background: linear-gradient(180deg, rgba(157, 65, 255, 0) 70.01%, rgba(157, 65, 255, 0.1) 100%);
 }
 
 body.dark-mode .ratings-list .review-content .-client {
@@ -260,11 +263,18 @@ body.dark-mode .ratings-list .review-content .-client {
 .collection-12 .products-list .block {
     display: flex;
     gap: 20px;
-    padding: 10px;
-    background: #1c1d20;
-    border: 1px solid #ffffff20;
-    border-radius: 10px;
+    padding: 4px 20px;
+    background: #111112;
+    border-radius: 0;
     align-items: center;
+}
+
+.collection-12 .box-product.--flag-below-image {
+    border: 1px solid #9d41ff52;
+}
+
+.collection-12 .products-list .box-product .holder-info {
+    padding: 8px 10px;
 }
 
 .collection-12 .products-list.flex .box-product, 
@@ -450,11 +460,43 @@ body.dark-mode .collection-12 .product-name {
 
     /* Ajustes na barra de newsletter */
 
+
+    #form-newsletter .btn {
+        background: #9d41ff;
+        border: 0;
+        height: 54px;
+    }
+
     .holder-newsletter {
-        display: flex;
+        display: flex        ;
         align-items: center;
         gap: 40px;
         justify-content: space-between;
+        padding-left: 220px;
+        position: relative;
+    }
+
+    .holder-newsletter:before {
+        content: "";
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background: url(https://i.imgur.com/0euYexZ.png) center no-repeat;
+    }
+
+    .holder-newsletter .-title {
+        color: #fff;
+        text-align: left;
+        font-size: 22px;
+    }
+    
+    .holder-newsletter .-title:after {
+        content: "Receba novidades exclusivas em seu e-mail";
+        display: block;
+        font-size: 16px;
+        font-weight: normal;
     }
 
     .holder-newsletter-form {
@@ -690,9 +732,13 @@ body.dark-mode .collection-12 .product-name {
     overflow: hidden;
     background: linear-gradient(180deg, rgba(157, 65, 255, 0) 70.01%, rgba(157, 65, 255, 0.1) 100%);
     border-radius: 4px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    max-width: none;
 }
 
-.holder-flags span.flag {
+body:not(.product) .holder-flags span.flag {
     position: absolute;
     top: 0;
     left: 0;
@@ -714,4 +760,37 @@ body.dark-mode .collection-12 .product-name {
 
 .box-product .buy-button-text-icon {
     height: 40px;
+}
+
+.header-hightlightbar .container:after {
+    content: "Confira";
+    padding-right: 32px;
+    background: url(https://i.imgur.com/6ABmxiX.png) right center no-repeat;
+}
+
+.header-hightlightbar > .container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+body:not(.product) .collection-12 .holder-flags span.flag {
+    display: none;
+}
+
+.collection-12 .products-list>.flex .box-product {
+    padding: 0;
+}
+
+body.dark-mode .ratings-list .holder-review {
+    background-color: transparent;
+    border: 1px solid #9d41ff59;
+}
+
+.holder-review {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 0!important;
 }

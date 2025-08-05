@@ -1,4 +1,10 @@
 window.addEventListener('load', function() {
+  
+    const reviews = document.querySelector('.product section.product-reviews');
+    const imagesContainer = document.querySelector('.product .main-product-images');
+    if (reviews && imagesContainer) {
+      imagesContainer.appendChild(reviews);
+    }
 
     // Move o banner 2 para dentro do holder-main-banner
     var target = document.querySelector('.main-banner .holder-main-banner');

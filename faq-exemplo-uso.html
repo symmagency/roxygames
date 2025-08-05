@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo de Uso do FAQ - Roxy Games</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: #1a1a1a;
+            color: #fff;
+            font-family: "Inter", sans-serif;
+            padding: 20px;
+        }
+        .exemplo-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .exemplo-titulo {
+            color: #9D41FF;
+            margin-bottom: 20px;
+        }
+        .exemplo-codigo {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: monospace;
+            border-left: 4px solid #9D41FF;
+        }
+        .exemplo-botao {
+            background: #9D41FF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+            font-family: "Inter", sans-serif;
+        }
+        .exemplo-botao:hover {
+            background: #6B21A8;
+        }
+    </style>
+</head>
+<body>
+    <div class="exemplo-container">
+        <h1 class="exemplo-titulo">Exemplo de Uso do FAQ - Roxy Games</h1>
+        
+        <h2>Como usar as funções do FAQ:</h2>
+        
+        <h3>1. Adicionar uma nova pergunta:</h3>
+        <div class="exemplo-codigo">
+            FAQ.adicionarPergunta("Nova pergunta?", "Nova resposta.");
+        </div>
+        <button class="exemplo-botao" onclick="FAQ.adicionarPergunta('Nova pergunta de teste?', 'Esta é uma nova resposta de teste.')">
+            Adicionar Pergunta
+        </button>
+        
+        <h3>2. Remover uma pergunta (por índice):</h3>
+        <div class="exemplo-codigo">
+            FAQ.removerPergunta(0); // Remove a primeira pergunta
+        </div>
+        <button class="exemplo-botao" onclick="FAQ.removerPergunta(0)">
+            Remover Primeira Pergunta
+        </button>
+        
+        <h3>3. Atualizar todas as perguntas:</h3>
+        <div class="exemplo-codigo">
+            const novoFAQ = [
+                { question: "Pergunta 1", answer: "Resposta 1" },
+                { question: "Pergunta 2", answer: "Resposta 2" }
+            ];
+            FAQ.atualizarFAQ(novoFAQ);
+        </div>
+        <button class="exemplo-botao" onclick="atualizarFAQExemplo()">
+            Atualizar FAQ
+        </button>
+        
+        <h3>4. Acessar os dados do FAQ:</h3>
+        <div class="exemplo-codigo">
+            console.log(FAQ.faqData); // Ver todas as perguntas no console
+        </div>
+        <button class="exemplo-botao" onclick="console.log(FAQ.faqData)">
+            Ver Dados no Console
+        </button>
+        
+        <h3>5. Recriar o FAQ:</h3>
+        <div class="exemplo-codigo">
+            FAQ.inserirFAQ(); // Recria o FAQ na página
+        </div>
+        <button class="exemplo-botao" onclick="FAQ.inserirFAQ()">
+            Recriar FAQ
+        </button>
+        
+        <hr style="margin: 30px 0; border-color: rgba(255,255,255,0.2);">
+        
+        <h2>Estrutura dos Dados:</h2>
+        <p>O FAQ usa um array de objetos com a seguinte estrutura:</p>
+        <div class="exemplo-codigo">
+            const faqData = [
+                {
+                    question: "Sua pergunta aqui?",
+                    answer: "Sua resposta aqui."
+                }
+            ];
+        </div>
+        
+        <h2>Personalização:</h2>
+        <p>Para modificar as perguntas, edite o array <code>faqData</code> no arquivo <code>faq.js</code>.</p>
+        <p>Para alterar o estilo, modifique as classes CSS no arquivo <code>style.css</code>.</p>
+    </div>
+
+    <script src="faq.js"></script>
+    <script>
+        function atualizarFAQExemplo() {
+            const novoFAQ = [
+                { 
+                    question: "Como funciona o sistema de pontos?", 
+                    answer: "Você ganha pontos a cada compra e pode trocá-los por descontos." 
+                },
+                { 
+                    question: "Vocês fazem entregas internacionais?", 
+                    answer: "Sim, enviamos para todo o mundo através de códigos digitais." 
+                },
+                { 
+                    question: "Posso presentear um jogo?", 
+                    answer: "Sim! Você pode comprar e enviar o código para outra pessoa." 
+                }
+            ];
+            FAQ.atualizarFAQ(novoFAQ);
+        }
+    </script>
+</body>
+</html> 
