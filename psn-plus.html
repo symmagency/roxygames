@@ -1,0 +1,336 @@
+<script>
+    // PlayStation Plus Section Creator
+    window.addEventListener('load', function() {
+      // Função para criar a seção do PlayStation Plus
+      function criarPlayStationPlusSection() {
+        // Dados das abas
+        const tabData = {
+          essencial: {
+            title: 'PlayStation Plus Essencial',
+            description: 'Desfrute de todos os principais benefícios do PlayStation Plus: junte-se aos seus amigos no modo multijogador online, adicione novos jogos à sua coleção todos os meses, receba ofertas incríveis da PlayStation Store e muito mais.',
+            features: [
+              'Jogos mensais*',
+              'Modo multijogador online',
+              'Descontos exclusivos'
+            ],
+            additional: 'O PlayStation Plus Essencial também inclui: Share Play, Armazenamento em nuvem e Conteúdo exclusivo'
+          },
+          extra: {
+            title: 'PlayStation Plus Extra',
+            description: 'Obtenha todos os excelentes benefícios incluídos no plano Essencial do PlayStation Plus, bem como o acesso ao catálogo de jogos, que inclui centenas de jogos, desde grandes sucessos que definiram gêneros a independentes inovadores, com novos títulos adicionados regularmente.',
+            features: [
+              'Tudo do PlayStation Plus Essencial',
+              'Biblioteca de jogos com centenas de títulos',
+              'Jogos de alta qualidade para PS4 e PS5',
+              'A coleção PlayStation Plus*',
+              'Armazenamento em nuvem',
+              'Conteúdo exclusivo'
+            ],
+            additional: 'O PlayStation Plus Extra também inclui: Ubisoft+ Classics'
+          },
+          deluxe: {
+            title: 'PlayStation Plus Deluxe',
+            description: 'Tudo do PlayStation Plus Extra, mais acesso a jogos clássicos, demos de jogos e ofertas exclusivas.',
+            features: [
+              'Tudo do PlayStation Plus Extra',
+              'Acesso a jogos clássicos',
+              'Demos de jogos e ofertas exclusivas'
+            ],
+            additional: 'O PlayStation Plus Deluxe também inclui: Game Trials, exclusivos de edição e muito mais'
+          }
+        };
+    
+        // Links para cada combinação de aba e período de assinatura
+        // VOCÊ PODE EDITAR ESTES LINKS CONFORME NECESSÁRIO
+        const subscriptionLinks = {
+          essencial: {
+            '1-month': 'https://exemplo.com/ps-plus-essencial-1-mes',
+            '3-months': 'https://exemplo.com/ps-plus-essencial-3-meses',
+            '12-months': 'https://www.roxygames.com.br/ps-plus-essencial-12-meses-midia-digital/p'
+          },
+          extra: {
+            '1-month': 'https://exemplo.com/ps-plus-extra-1-mes',
+            '3-months': 'https://exemplo.com/ps-plus-extra-3-meses',
+            '12-months': 'https://www.roxygames.com.br/ps-plus-extra-12-meses-midia-digital/p'
+          },
+          deluxe: {
+            '1-month': 'https://exemplo.com/ps-plus-deluxe-1-mes',
+            '3-months': 'https://exemplo.com/ps-plus-deluxe-3-meses',
+            '12-months': 'https://www.roxygames.com.br/ps-plus-deluxe-12-meses-midia-digital/p'
+          }
+        };
+    
+        // Cria o container principal
+        const psPlusContainer = document.createElement('div');
+        psPlusContainer.className = 'ps-plus-section';
+        
+        // Variáveis para controlar o estado atual
+        let currentTab = 'essencial';
+        let currentSubscription = '1-month';
+        
+        psPlusContainer.innerHTML = `
+          <div class="container">
+            <div class="ps-plus-content">
+              <!-- Abas -->
+              <div class="ps-plus-tabs">
+                <button class="ps-tab active" data-tab="essencial">ESSENCIAL</button>
+                <button class="ps-tab" data-tab="extra">EXTRA</button>
+                <button class="ps-tab" data-tab="deluxe">DELUXE</button>
+              </div>
+    
+              <!-- Conteúdo das abas -->
+              <div class="ps-plus-content-wrapper">
+                <div class="ps-plus-main-content">
+                  <div class="ps-plus-info">
+                    <h2 class="ps-plus-title">${tabData.essencial.title}</h2>
+                    <p class="ps-plus-description">${tabData.essencial.description}</p>
+                    
+                    <ul class="ps-plus-features">
+                      ${tabData.essencial.features.map(feature => `<li>${feature}</li>`).join('')}
+                    </ul>
+                    
+                    <p class="ps-plus-additional">${tabData.essencial.additional}</p>
+                  </div>
+                </div>
+    
+                <!-- Opções de assinatura -->
+                <div class="ps-plus-subscription">
+                  <div class="subscription-options">
+                    <label class="subscription-option active">
+                      <input type="radio" name="subscription" value="1-month" checked>
+                      <span class="option-text">Assinatura de 1 mês</span>
+                    </label>
+                    
+                    <label class="subscription-option">
+                      <input type="radio" name="subscription" value="3-months">
+                      <span class="option-text">Assinatura de 3 meses</span>
+                    </label>
+                    
+                    <label class="subscription-option">
+                      <input type="radio" name="subscription" value="12-months">
+                      <span class="option-text">Assinatura de 12 meses</span>
+                    </label>
+                  </div>
+                  
+                  <a href="${subscriptionLinks.essencial['1-month']}" class="ps-plus-cta" target="_blank">
+                    Ver produto
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+    
+        // Função para atualizar o link do botão
+        function atualizarLinkBotao() {
+          const ctaButton = psPlusContainer.querySelector('.ps-plus-cta');
+          const link = subscriptionLinks[currentTab][currentSubscription];
+          ctaButton.href = link;
+        }
+    
+        // Função para trocar o conteúdo das abas
+        function trocarAba(tabName) {
+          currentTab = tabName;
+          const data = tabData[tabName];
+          
+          // Atualiza o título e conteúdo
+          const title = psPlusContainer.querySelector('.ps-plus-title');
+          const description = psPlusContainer.querySelector('.ps-plus-description');
+          const features = psPlusContainer.querySelector('.ps-plus-features');
+          const additional = psPlusContainer.querySelector('.ps-plus-additional');
+          
+          title.textContent = data.title;
+          description.textContent = data.description;
+          features.innerHTML = data.features.map(feature => `<li>${feature}</li>`).join('');
+          additional.textContent = data.additional;
+          
+          // Atualiza as classes das abas
+          psPlusContainer.querySelectorAll('.ps-tab').forEach(tab => {
+            tab.classList.remove('active');
+          });
+          psPlusContainer.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+          
+          // Atualiza o link do botão
+          atualizarLinkBotao();
+        }
+    
+        // Adiciona event listeners para as abas
+        psPlusContainer.querySelectorAll('.ps-tab').forEach(tab => {
+          tab.addEventListener('click', function() {
+            const tabName = this.getAttribute('data-tab');
+            trocarAba(tabName);
+          });
+        });
+    
+        // Adiciona event listeners para as opções de assinatura
+        psPlusContainer.querySelectorAll('.subscription-option').forEach(option => {
+          option.addEventListener('click', function() {
+            psPlusContainer.querySelectorAll('.subscription-option').forEach(opt => {
+              opt.classList.remove('active');
+            });
+            this.classList.add('active');
+            
+            // Atualiza o período de assinatura selecionado
+            const radioInput = this.querySelector('input[type="radio"]');
+            currentSubscription = radioInput.value;
+            
+            // Atualiza o link do botão
+            atualizarLinkBotao();
+          });
+        });
+    
+        return psPlusContainer;
+      }
+    
+      // Função para inserir a seção após .home .banner_1-7
+      function inserirPlayStationPlusSection() {
+        // Procura pelo banner_1-7
+        const banner17 = document.querySelector('.home .banner_1-7');
+        
+        if (banner17) {
+          // Se encontrar o banner_1-7, insere após ele
+          const psPlusSection = criarPlayStationPlusSection();
+          banner17.parentNode.insertBefore(psPlusSection, banner17.nextSibling);
+        } else {
+          // Se não encontrar, procura por outros banners ou elementos da home
+          const homeSection = document.querySelector('.home');
+          if (homeSection) {
+            const psPlusSection = criarPlayStationPlusSection();
+            homeSection.appendChild(psPlusSection);
+          } else {
+            // Se não encontrar a seção home, insere no body
+            const psPlusSection = criarPlayStationPlusSection();
+            document.body.appendChild(psPlusSection);
+          }
+        }
+      }
+    
+      // Executa a inserção da seção
+      requestAnimationFrame(() => {
+        inserirPlayStationPlusSection();
+      });
+    });
+    </script>
+    
+    <style>
+    .ps-plus-section {
+        background: url(https://i.imgur.com/NFI49Ga.png) right no-repeat;
+        background-color: #babfc9;
+        padding: 70px 0;
+        margin-top: 80px;
+    }
+    
+    button.ps-tab.active {}
+    
+    .ps-tab {
+        padding: 0 40px;
+        height: 50px;
+        border: 1px solid #9C9CA3;
+        border-radius: 4px;
+        letter-spacing: 2px;
+        font-weight: 600;
+    }
+    
+    .ps-plus-tabs {
+        display: flex;
+        gap: 20px;
+        padding: 0 0 20px;
+    }
+    
+    .ps-tab:nth-child(2) {
+        background: linear-gradient(90deg, #FFE741 0%, #FDC202 100%);
+    }
+    
+    .ps-tab:last-child {
+        background: #242424;
+        color: #FFD531;
+    }
+    
+    .ps-plus-title {
+        font-size: 28px;
+        color: #000;
+        font-weight: 500;
+    }
+    
+    .ps-plus-info {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        color: #000;
+        max-width: 450px;
+    }
+    
+    .ps-plus-content-wrapper {
+        background: rgba(255, 255, 255, 0.40);
+        padding: 40px;
+        max-width: 900px;
+        border-radius: 6px;
+        display: flex;
+        gap: 40px;
+    }
+    
+    .subscription-options {
+        display: flex;
+        color: #000;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .subscription-option input[type="radio"] {
+        width: 20px;
+        height: 20px;
+        margin: 0;
+        background: url(https://i.imgur.com/IV9RTWp.png);
+    }
+    
+    .subscription-option.active input[type="radio"] {
+        background: url(https://i.imgur.com/bfADK30.png);
+    }
+    
+    .subscription-option {
+        display: flex;
+        gap: 10px;
+        font-size: 16px;
+        align-items: center;
+        width: 280px;
+        height: 46px;
+        padding: 24px;
+        border: 1px solid rgba(28, 29, 32, 0.20);
+        border-radius: 4px;
+    }
+    
+    .subscription-option.active {
+        background: #FFE53F;
+    }
+    
+    a.ps-plus-cta {
+        background: #FFE53F;
+        color: #000;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        padding: 17px 32px;
+        box-sizing: border-box;
+        justify-content: center;
+        gap: 20px;
+        border-radius: 999px;
+        margin-top: 40px;
+    }
+    
+    .ps-plus-subscription {
+        padding: 24px;
+        background: rgba(255,255,255,.4);
+        border-radius: 6px;
+    }
+    
+    @media screen and (max-width: 768px) {
+        
+        .ps-plus-content-wrapper {
+        padding: 24px;
+    }
+        
+    }
+    </style>
